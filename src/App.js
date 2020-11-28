@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import firebase from './firebase';
 import './global.css';
 import Home from './components/Home';
 import Header from './components/Header';
@@ -12,7 +13,10 @@ class App extends Component{
   };
 
   componentDidMount(){
-    
+    firebase.isInitialized().then(result =>{
+      //return of user
+      this.setState({firebaseInitialized: result});
+    })
   }
 
   render(){

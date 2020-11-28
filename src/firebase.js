@@ -23,8 +23,19 @@ class Firebase{
         return app.auth().signInWithEmailAndPassword(email, password);
     }
 
-    register(email){
-        app.auth().createUserWithEmailAndPassword(email,password);
+    async register(nome, email, password){
+        await app.auth().createUserWithEmailAndPassword(email,password);
+
+        const uid = app.auth().currentUser.uid;
+
+        return app.database().ref('users').child(uid).set({
+            nome: nome
+        })
+    }
+    isInitialized(){
+        return new Promise(resolve =>{
+            app.auth().onAuthStateChanged(resolve);
+        })
     }
 }
 
