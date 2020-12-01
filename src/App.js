@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 
 class App extends Component{
 
@@ -30,6 +31,7 @@ class App extends Component{
           <Route exact path="/" component={Home}/>
           <Route exact path="/Login" component={Login}/>
           <Route exact path="/Register" component={Register}/>
+          <Route exact path="/Dashboard" component={Dashboard} />
         </Switch>
       </BrowserRouter>
     ) : (

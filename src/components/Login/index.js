@@ -17,8 +17,16 @@ class Login extends Component{
         this.login = this.login.bind(this);
     }
 
+    componentDidMount(){
+        //verificar se tem usuário logado.
+        if(firebase.getCurrent()){
+            return this.props.history.replace('dashboard');
+        }
+    }
+
     entrar(e){
         e.preventDefault();
+        this.login();
     }
 
     login = async () => {
@@ -33,6 +41,8 @@ class Login extends Component{
                     return null;
                 }
             })
+            this.props.history.replace('/dashboard');
+
         }catch(error){
             alert(error.message);
         }
@@ -41,7 +51,7 @@ class Login extends Component{
     render(){
         return(
             <div>
-                <form onClick={this.entrar} id="login"> 
+                <form onSubmit={this.entrar} id="login"> 
                     <label>Email: </label><br/>
                     <input type="email" autoComplete="off" autoFocus value={this.state.email}
                     onChange={(e) => this.setState({email: e.target.value})} placeholder="Seu Email" /><br/>
