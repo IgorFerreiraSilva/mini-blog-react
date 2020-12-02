@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import New from './components/New';
 
 class App extends Component{
 
@@ -19,7 +20,8 @@ class App extends Component{
   componentDidMount(){
     firebase.isInitialized().then(result =>{
       //return of user
-      this.setState({firebaseInitialized: result});
+      this.setState({firebaseInitialized: result})
+
     })
   }
 
@@ -32,6 +34,7 @@ class App extends Component{
           <Route exact path="/Login" component={Login}/>
           <Route exact path="/Register" component={Register}/>
           <Route exact path="/Dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/new" component={New} />
         </Switch>
       </BrowserRouter>
     ) : (

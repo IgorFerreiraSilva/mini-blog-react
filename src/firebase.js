@@ -24,6 +24,10 @@ class Firebase{
         return app.auth().signInWithEmailAndPassword(email, password);
     }
 
+    logout(){
+        return app.auth().signOut();
+    }
+
     async register(nome, email, password){
         await app.auth().createUserWithEmailAndPassword(email,password);
 
@@ -42,6 +46,7 @@ class Firebase{
     getCurrent(){
         return app.auth().currentUser && app.auth().currentUser.email
     }
+
 }
 
 export default new Firebase();
